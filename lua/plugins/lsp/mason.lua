@@ -29,21 +29,15 @@ mason_lspconfig.setup({
     "dockerls",
     "bashls",
     "eslint",
-    "gopls",
-    "golangci_lint_ls",
     "grammarly",
     "graphql",
     "html",
     "jsonls",
-    "r_language_server",
-    "rust_analyzer",
     "sumneko_lua",
     "tailwindcss",
     "tsserver",
     "yamlls",
-    "emmet_ls"m
-    "prettier",
-    "cspell",
+    "emmet_ls",
   },
   -- auto-install configured servers (with lspconfig)
   automatic_installation = true, -- not the same as ensure_installed
