@@ -33,7 +33,7 @@ return packer.startup(function(use)
 
   use("nvim-lua/plenary.nvim") -- lua functions that many plugins use
 
-  use("bluz71/vim-nightfly-guicolors") -- preferred colorscheme
+  use("folke/tokyonight.nvim") -- preferred colorscheme
 
   use("christoomey/vim-tmux-navigator") -- tmux & split window navigation
 
@@ -99,6 +99,14 @@ return packer.startup(function(use)
 
   -- git integration
   use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
+
+  use("antoinemadec/FixCursorHold.nvim") -- fix cursor hold
+
+  -- testing in neovim
+  use("nvim-neotest/neotest") -- interacting with tests
+  use("nvim-neotest/neotest-vim-test") -- adapter for vim test
+  use("haydenmeade/neotest-jest") -- testing JS & TS with Jest
+  use("nvim-neotest/neotest-plenary") -- neotest plenary
 
   if packer_bootstrap then
     require("packer").sync()

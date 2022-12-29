@@ -79,6 +79,11 @@ _G.packer_plugins = {
     path = "/Users/pssandhu/.local/share/nvim/site/pack/packer/start/Comment.nvim",
     url = "https://github.com/numToStr/Comment.nvim"
   },
+  ["FixCursorHold.nvim"] = {
+    loaded = true,
+    path = "/Users/pssandhu/.local/share/nvim/site/pack/packer/start/FixCursorHold.nvim",
+    url = "https://github.com/antoinemadec/FixCursorHold.nvim"
+  },
   LuaSnip = {
     loaded = true,
     path = "/Users/pssandhu/.local/share/nvim/site/pack/packer/start/LuaSnip",
@@ -144,6 +149,26 @@ _G.packer_plugins = {
     path = "/Users/pssandhu/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
+  neotest = {
+    loaded = true,
+    path = "/Users/pssandhu/.local/share/nvim/site/pack/packer/start/neotest",
+    url = "https://github.com/nvim-neotest/neotest"
+  },
+  ["neotest-jest"] = {
+    loaded = true,
+    path = "/Users/pssandhu/.local/share/nvim/site/pack/packer/start/neotest-jest",
+    url = "https://github.com/haydenmeade/neotest-jest"
+  },
+  ["neotest-plenary"] = {
+    loaded = true,
+    path = "/Users/pssandhu/.local/share/nvim/site/pack/packer/start/neotest-plenary",
+    url = "https://github.com/nvim-neotest/neotest-plenary"
+  },
+  ["neotest-vim-test"] = {
+    loaded = true,
+    path = "/Users/pssandhu/.local/share/nvim/site/pack/packer/start/neotest-vim-test",
+    url = "https://github.com/nvim-neotest/neotest-vim-test"
+  },
   ["null-ls.nvim"] = {
     loaded = true,
     path = "/Users/pssandhu/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
@@ -206,6 +231,11 @@ _G.packer_plugins = {
     path = "/Users/pssandhu/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
+  ["tokyonight.nvim"] = {
+    loaded = true,
+    path = "/Users/pssandhu/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
+    url = "https://github.com/folke/tokyonight.nvim"
+  },
   ["typescript.nvim"] = {
     loaded = true,
     path = "/Users/pssandhu/.local/share/nvim/site/pack/packer/start/typescript.nvim",
@@ -220,11 +250,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/pssandhu/.local/share/nvim/site/pack/packer/start/vim-maximizer",
     url = "https://github.com/szw/vim-maximizer"
-  },
-  ["vim-nightfly-guicolors"] = {
-    loaded = true,
-    path = "/Users/pssandhu/.local/share/nvim/site/pack/packer/start/vim-nightfly-guicolors",
-    url = "https://github.com/bluz71/vim-nightfly-guicolors"
   },
   ["vim-surround"] = {
     loaded = true,
