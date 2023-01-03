@@ -1,7 +1,7 @@
-<h1>prabhjots-dev-config<h1>
-<h6>Prabhjot's dev configuration<h6> 
+<h1>prabhjots-dev-config</h1>
+<h6>Prabhjot's dev configuration</h6> 
 
-<h2>**TODO:**<h2>
+<h2>TODO:</h2>
 
 -Write an install script that installs everything that I need and puts everything where it should be
 
