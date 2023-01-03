@@ -7,6 +7,9 @@
 
 -Theming terminal
 
+-unzip not installed -> install it
+
+-live grep doesnt work -> brew install ripgrep
 
 [oh-my-zsh] plugin 'zsh-autosuggestions' not found -> https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md
 
