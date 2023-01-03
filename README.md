@@ -1,8 +1,9 @@
 # prabhjots-dev-config
 Prabhjot's dev configuration 
 
-TODO: Write an install script that installs everything that I need and puts everything where it should be
-
+TODO: 
+-Write an install script that installs everything that I need and puts everything where it should be
+-Theming terminal
 
 [oh-my-zsh] plugin 'zsh-autosuggestions' not found -> https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md
 
