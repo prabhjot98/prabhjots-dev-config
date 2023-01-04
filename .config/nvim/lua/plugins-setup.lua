@@ -108,6 +108,12 @@ return packer.startup(function(use)
   use("haydenmeade/neotest-jest") -- testing JS & TS with Jest
   use("nvim-neotest/neotest-plenary") -- neotest plenary
 
+  use({ "michaelb/sniprun", run = "bash ./install.sh" }) -- inline code runner
+
+  use("folke/which-key.nvim") -- display current keymaps
+
+  use("folke/todo-comments.nvim") -- highlight comments with some cool colors
+
   if packer_bootstrap then
     require("packer").sync()
   end

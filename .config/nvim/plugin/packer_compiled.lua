@@ -119,6 +119,11 @@ _G.packer_plugins = {
     path = "/Users/pssandhu/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
   },
+  ["lazy.nvim"] = {
+    loaded = true,
+    path = "/Users/pssandhu/.local/share/nvim/site/pack/packer/start/lazy.nvim",
+    url = "https://github.com/folke/lazy.nvim"
+  },
   ["lspkind.nvim"] = {
     loaded = true,
     path = "/Users/pssandhu/.local/share/nvim/site/pack/packer/start/lspkind.nvim",
@@ -221,6 +226,11 @@ _G.packer_plugins = {
     path = "/Users/pssandhu/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  sniprun = {
+    loaded = true,
+    path = "/Users/pssandhu/.local/share/nvim/site/pack/packer/start/sniprun",
+    url = "https://github.com/michaelb/sniprun"
+  },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
     path = "/Users/pssandhu/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
@@ -230,6 +240,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/pssandhu/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["todo-comments.nvim"] = {
+    loaded = true,
+    path = "/Users/pssandhu/.local/share/nvim/site/pack/packer/start/todo-comments.nvim",
+    url = "https://github.com/folke/todo-comments.nvim"
   },
   ["tokyonight.nvim"] = {
     loaded = true,
@@ -260,6 +275,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/pssandhu/.local/share/nvim/site/pack/packer/start/vim-tmux-navigator",
     url = "https://github.com/christoomey/vim-tmux-navigator"
+  },
+  ["which-key.nvim"] = {
+    loaded = true,
+    path = "/Users/pssandhu/.local/share/nvim/site/pack/packer/start/which-key.nvim",
+    url = "https://github.com/folke/which-key.nvim"
   }
 }
 
