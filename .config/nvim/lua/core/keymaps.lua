@@ -1,7 +1,14 @@
+-- TODO rewrite all the mappings in whichkey
+local _, wk = pcall(require, "which-key")
+
 -- set leader key to space
 vim.g.mapleader = " "
 
+wk.register({}, { prefix = "<leader>" })
+
 local keymap = vim.keymap -- for conciseness
+
+keymap.set("n", "<leader>", ":WhichKey <Space><CR>")
 
 ---------------------
 -- General Keymaps

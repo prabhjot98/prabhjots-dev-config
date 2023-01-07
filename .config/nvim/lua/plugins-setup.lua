@@ -114,6 +114,9 @@ return packer.startup(function(use)
 
   use("folke/todo-comments.nvim") -- highlight comments with some cool colors
 
+  use("lukas-reineke/indent-blankline.nvim") -- color indents
+
+  use("glepnir/dashboard-nvim") -- dashboard for neovim
   if packer_bootstrap then
     require("packer").sync()
   end
