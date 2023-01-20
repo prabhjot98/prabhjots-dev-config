@@ -117,6 +117,9 @@ return packer.startup(function(use)
   use("lukas-reineke/indent-blankline.nvim") -- color indents
 
   use("glepnir/dashboard-nvim") -- dashboard for neovim
+
+  use("ThePrimeagen/vim-be-good") -- game to learn nvim
+
   if packer_bootstrap then
     require("packer").sync()
   end

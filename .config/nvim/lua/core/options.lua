@@ -16,12 +16,14 @@ opt.wrap = false -- disable line wrapping
 -- search settings
 opt.ignorecase = true -- ignore case when searching
 opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
+opt.incsearch = true
+opt.hlsearch = false
 
 -- cursor line
 opt.cursorline = true -- highlight the current cursor line
+opt.guicursor = "n:ver50" -- custom cursor
 
 -- appearance
-
 -- turn on termguicolors for colorscheme to work
 -- (have to use iterm2 or any other true color terminal)
 opt.termguicolors = true
@@ -39,3 +41,9 @@ opt.splitright = true -- split vertical window to the right
 opt.splitbelow = true -- split horizontal window to the bottom
 
 opt.iskeyword:append("-") -- consider string-string as whole word
+
+-- view settings
+opt.scrolloff = 16
+
+-- update time
+opt.updatetime = 50
