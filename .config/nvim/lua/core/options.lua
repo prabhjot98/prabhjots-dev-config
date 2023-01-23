@@ -24,6 +24,7 @@ opt.cursorline = true -- highlight the current cursor line
 opt.guicursor = "n:ver50" -- custom cursor
 
 -- appearance
+
 -- turn on termguicolors for colorscheme to work
 -- (have to use iterm2 or any other true color terminal)
 opt.termguicolors = true

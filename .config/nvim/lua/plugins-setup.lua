@@ -55,7 +55,7 @@ return packer.startup(function(use)
   -- statusline
   use("nvim-lualine/lualine.nvim")
 
-  -- fuzzy finding w/ telescope
+  -- telescope plugins
   use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- dependency for better sorting performance
   use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" }) -- fuzzy finder
 
@@ -117,10 +117,8 @@ return packer.startup(function(use)
   use("lukas-reineke/indent-blankline.nvim") -- color indents
 
   use("glepnir/dashboard-nvim") -- dashboard for neovim
-
-  use("ThePrimeagen/vim-be-good") -- game to learn nvim
-
   if packer_bootstrap then
     require("packer").sync()
   end
+  use("DanilaMihailov/beacon.nvim") -- highlight lines i jump to
 end)
