@@ -108,17 +108,23 @@ return packer.startup(function(use)
   use("haydenmeade/neotest-jest") -- testing JS & TS with Jest
   use("nvim-neotest/neotest-plenary") -- neotest plenary
 
-  use({ "michaelb/sniprun", run = "bash ./install.sh" }) -- inline code runner
-
   use("folke/which-key.nvim") -- display current keymaps
 
   use("folke/todo-comments.nvim") -- highlight comments with some cool colors
 
   use("lukas-reineke/indent-blankline.nvim") -- color indents
+  use("p00f/nvim-ts-rainbow") -- colored brackets
 
-  use("glepnir/dashboard-nvim") -- dashboard for neovim
+  use("kdheepak/lazygit.nvim") -- lazygit in neovim
+
+  use("DanilaMihailov/beacon.nvim") -- highlight lines i jump to
+  -- use("glepnir/dashboard-nvim") -- dashboard for neovim
+  use("folke/trouble.nvim") -- code diagnostics
+  use("ray-x/lsp_signature.nvim") -- show function signiture in-line
+
+  use("j-hui/fidget.nvim") -- LSP status widget
+
   if packer_bootstrap then
     require("packer").sync()
   end
-  use("DanilaMihailov/beacon.nvim") -- highlight lines i jump to
 end)

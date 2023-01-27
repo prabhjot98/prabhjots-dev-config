@@ -22,6 +22,7 @@ neotest.setup({
   adapters = {
     neotestJest({
       dap = { justMyCode = false },
+      jestCommand = "jest --watch ",
     }),
     neotestPlenary,
     neotestVimTest({
