@@ -74,5 +74,8 @@ export ZPLUG_HOME=/opt/homebrew/opt/zplug
 alias p='pnpm'
 alias n='nvim'
 alias nvimConfig="nvim ~/.config/nvim/"
+alias gr='git pull --rebase'
+alias gp='git push'
+alias gs='git status'
 
 export PATH="$PATH:$HOME/.local/bin"
