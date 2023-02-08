@@ -58,7 +58,19 @@ source ~/.iterm2_shell_integration.zsh
 export PNPM_HOME="/Users/pssandhu/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 
-# RSS AWS login
+#ZPLUG stuff
+export ZPLUG_HOME=/opt/homebrew/opt/zplug
+
+#Custom aliases
+alias p='pnpm'
+alias n='nvim'
+alias nvimConfig="nvim ~/.config/nvim/init.lua"
+alias gr='git pull --rebase'
+alias gp='git push'
+alias gs='git status'
+
+export PATH="$PATH:$HOME/.local/bin"
+
 function aws-login() {
   if [ $# -gt 0 ]; then
     aws-adfs login --adfs-ca-bundle ~/.aws/sectigo.cer  $@
@@ -66,16 +78,3 @@ function aws-login() {
     aws-adfs login --profile default --adfs-ca-bundle ~/.aws/sectigo.cer && aws-adfs login --profile cross-account --adfs-ca-bundle ~/.aws/sectigo.cer
   fi
 }
-
-#ZPLUG stuff
-export ZPLUG_HOME=/opt/homebrew/opt/zplug
-
-#Custom aliases
-alias p='pnpm'
-alias n='nvim'
-alias nvimConfig="nvim ~/.config/nvim/"
-alias gr='git pull --rebase'
-alias gp='git push'
-alias gs='git status'
-
-export PATH="$PATH:$HOME/.local/bin"

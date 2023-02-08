@@ -51,7 +51,7 @@ return packer.startup(function(use)
 
   -- vs-code like icons
   use("nvim-tree/nvim-web-devicons")
-
+  use("ChristianChiarulli/neovim-codicons")
   -- statusline
   use("nvim-lualine/lualine.nvim")
 
@@ -118,11 +118,25 @@ return packer.startup(function(use)
   use("kdheepak/lazygit.nvim") -- lazygit in neovim
 
   use("DanilaMihailov/beacon.nvim") -- highlight lines i jump to
-  -- use("glepnir/dashboard-nvim") -- dashboard for neovim
+  use("glepnir/dashboard-nvim") -- dashboard for neovim
   use("folke/trouble.nvim") -- code diagnostics
   use("ray-x/lsp_signature.nvim") -- show function signiture in-line
 
   use("j-hui/fidget.nvim") -- LSP status widget
+
+  use("gelguy/wilder.nvim") -- more wildmenu features
+
+  use("karb94/neoscroll.nvim") -- smooth scrolling for nvim
+
+  use("rmagatti/auto-session") -- auto session manager
+
+  use({
+    "akinsho/git-conflict.nvim",
+    tag = "*",
+    config = function()
+      require("git-conflict").setup()
+    end,
+  })
 
   if packer_bootstrap then
     require("packer").sync()
