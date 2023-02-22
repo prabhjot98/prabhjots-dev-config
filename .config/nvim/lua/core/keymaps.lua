@@ -1,11 +1,3 @@
--- TODO rewrite all the mappings in whichkey
-local _, wk = pcall(require, "which-key")
-
--- set leader key to space
-vim.g.mapleader = " "
-
-wk.register({}, { prefix = "<leader>" })
-
 local keymap = vim.keymap -- for conciseness
 
 ---------------------
@@ -42,8 +34,8 @@ keymap.set("n", "<leader>tp", ":tabp<CR>") --  go to previous tab
 -- vim-maximizer
 keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>") -- toggle split window maximization
 
--- nvim-tree
-keymap.set("n", "<leader>e", ":NvimTreeCollapse<CR> | :NvimTreeFindFileToggle<CR>") -- toggle file explorer
+-- nvim-tree :NvimTreeCollapse<CR> |
+keymap.set("n", "<leader>e", ":NvimTreeFindFileToggle<CR>") -- toggle file explorer
 
 -- telescope
 keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore

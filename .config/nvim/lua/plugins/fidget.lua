@@ -1,6 +1,4 @@
-local setup, fidgetSetup = pcall(require, "fidget")
-if not setup then
-  return
-end
-
-fidgetSetup.setup()
+return {
+  "j-hui/fidget.nvim", -- LSP status widget
+  config = true,
+}

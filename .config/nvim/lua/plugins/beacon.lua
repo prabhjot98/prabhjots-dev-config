@@ -1,7 +1,3 @@
-local setup, beacon = pcall(require, "beacon")
-if not setup then
-  return
-end
-
--- enable comment
-beacon.setup()
+return {
+  "DanilaMihailov/beacon.nvim", -- flash current line when I move buffers
+}

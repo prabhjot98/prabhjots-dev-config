@@ -21,7 +21,7 @@ opt.hlsearch = true
 
 -- cursor line
 opt.cursorline = true -- highlight the current cursor line
-opt.guicursor = "n:ver50" -- custom cursor
+-- opt.guicursor = "n:ver50" -- custom cursor
 
 -- appearance
 

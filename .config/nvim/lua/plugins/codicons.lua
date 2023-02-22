@@ -1,4 +1,4 @@
 return {
-  "numToStr/Comment.nvim",
+  "mortepau/codicons.nvim",
   config = true,
 }

@@ -1,24 +1,22 @@
-require("plugins-setup")
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 require("core.options")
+
+-- add list of plugins to install
+require("lazy").setup("plugins")
+
 require("core.keymaps")
-require("plugins.comment")
-require("plugins.nvim-tree")
-require("plugins.lualine")
-require("plugins.telescope")
-require("plugins.nvim-cmp")
-require("core.colorscheme")
-require("plugins.lsp.mason")
-require("plugins.lsp.lspsaga")
-require("plugins.lsp.lspconfig")
-require("plugins.lsp.null-ls")
-require("plugins.autopairs")
-require("plugins.treesitter")
-require("plugins.gitsigns")
-require("plugins.neotest")
-require("plugins.dashboard")
-require("plugins.todo-comments")
-require("plugins.indent-blankline")
-require("plugins.lsp.signature")
-require("plugins.fidget")
-require("plugins.wilder")
-require("plugins.auto-session")
