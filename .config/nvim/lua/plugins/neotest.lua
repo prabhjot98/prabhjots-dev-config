@@ -13,7 +13,7 @@ return {
       adapters = {
         require("neotest-jest")({
           dap = { justMyCode = false },
-          jestCommand = "jest --watch ",
+          jestCommand = "jest",
         }),
         require("neotest-plenary"),
         require("neotest-vim-test")({

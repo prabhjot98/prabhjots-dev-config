@@ -4,6 +4,7 @@ return {
   dependencies = {
     "hrsh7th/cmp-buffer", -- source for text in buffer
     "hrsh7th/cmp-path", -- source for file system paths
+    "saadparwaiz1/cmp_luasnip", -- for autocompletion
   },
   config = function()
     vim.opt.completeopt = "menu,menuone,noselect"

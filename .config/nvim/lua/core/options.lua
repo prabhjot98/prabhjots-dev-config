@@ -1,4 +1,12 @@
-local opt = vim.opt -- for conciseness
+local opt = vim.opt
+
+-- set the mapleader
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+-- undo persistence after closing a file
+opt.undofile = true
+opt.undodir = vim.fn.expand("$HOME/.config/nvim/.undo//")
 
 -- line numbers
 opt.relativenumber = true -- show relative line numbers
@@ -16,15 +24,13 @@ opt.wrap = false -- disable line wrapping
 -- search settings
 opt.ignorecase = true -- ignore case when searching
 opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
-opt.incsearch = true
-opt.hlsearch = true
+opt.incsearch = true -- move to your search as you write it
+opt.hlsearch = true -- highlight my search
 
 -- cursor line
 opt.cursorline = true -- highlight the current cursor line
--- opt.guicursor = "n:ver50" -- custom cursor
 
 -- appearance
-
 -- turn on termguicolors for colorscheme to work
 -- (have to use iterm2 or any other true color terminal)
 opt.termguicolors = true
@@ -47,4 +53,4 @@ opt.iskeyword:append("-") -- consider string-string as whole word
 opt.scrolloff = 16
 
 -- update time
-opt.updatetime = 50
+opt.updatetime = 100
