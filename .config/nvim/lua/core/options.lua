@@ -9,7 +9,7 @@ opt.undofile = true
 opt.undodir = vim.fn.expand("$HOME/.config/nvim/.undo//")
 
 -- line numbers
-opt.relativenumber = true -- show relative line numbers
+opt.relativenumber = true -- show relative line numbers, disable this if you don't like it
 opt.number = true -- shows absolute line number on cursor line (when relative number is on)
 
 -- tabs & indentation
@@ -19,7 +19,7 @@ opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
 
 -- line wrapping
-opt.wrap = false -- disable line wrapping
+opt.wrap = false -- disable line wrapping, enable this if you really like wrapped lines
 
 -- search settings
 opt.ignorecase = true -- ignore case when searching
@@ -50,7 +50,7 @@ opt.splitbelow = true -- split horizontal window to the bottom
 opt.iskeyword:append("-") -- consider string-string as whole word
 
 -- view settings
-opt.scrolloff = 16
+opt.scrolloff = 8
 
 -- update time
 opt.updatetime = 100

@@ -1,6 +1,7 @@
 return {
-  "gelguy/wilder.nvim",
-  config = function()
-    require("wilder").setup({ modes = { ":", "/", "?" } })
-  end,
+	"gelguy/wilder.nvim",
+	config = function()
+		local wilder = require("wilder")
+		wilder.setup({ modes = { ":", "/", "?" } })
+	end,
 }
