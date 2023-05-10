@@ -4,6 +4,8 @@ keymap.set("n", "U", ":redo<CR>") -- defualt vim keymap overrides
 keymap.set("n", "<leader>nh", ":nohl<CR>") -- clear search highlights
 keymap.set("n", "x", '"_x') -- delete single character without copying into register
 keymap.set("n", "<leader>e", ":NvimTreeFindFileToggle<CR>") -- toggle file explorer
+keymap.set("n", "<leader>w", ":w<CR>") -- save
+keymap.set("n", "<leader>x", ":x<CR>") -- save and quit
 
 local wk = require("which-key")
 
