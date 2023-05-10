@@ -54,3 +54,7 @@ opt.scrolloff = 8
 
 -- update time
 opt.updatetime = 100
+
+-- code folding
+-- vim.wo.foldmethod = "expr"
+-- vim.wo.foldexpr = "nvim_treesitter#foldexpr()"

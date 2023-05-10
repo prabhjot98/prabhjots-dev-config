@@ -1,6 +1,11 @@
 return {
 	"neovim/nvim-lspconfig", -- easily configure language servers
-	dependencies = { "hrsh7th/cmp-nvim-lsp", "jose-elias-alvarez/typescript.nvim", "onsails/lspkind.nvim" },
+	dependencies = {
+		"hrsh7th/cmp-nvim-lsp",
+		"jose-elias-alvarez/typescript.nvim",
+		"onsails/lspkind.nvim",
+		"simrat39/rust-tools.nvim",
+	},
 	config = function()
 		-- import lspconfig plugin safely
 		local lspconfig_status, lspconfig = pcall(require, "lspconfig")
@@ -19,6 +24,8 @@ return {
 		if not typescript_setup then
 			return
 		end
+
+		local rt = require("rust-tools")
 
 		local keymap = vim.keymap -- for conciseness
 
@@ -47,6 +54,13 @@ return {
 				keymap.set("n", "<leader>ru", ":TypescriptRemoveUnused<CR>") -- remove unused variables
 				keymap.set("n", "gd", ":TypescriptGoToSourceDefinition<CR>") -- go to definition
 			end
+
+			if client.name == "rust_analyzer" then
+				-- Hover actions
+				vim.keymap.set("n", "<leader>asd", rt.hover_actions.hover_actions, { buffer = bufnr })
+				-- Code action groups
+				vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+			end
 		end
 
 		-- used to enable autocompletion (assign to every lsp server config)
@@ -57,6 +71,13 @@ return {
 			local hl = "DiagnosticSign" .. type
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
+
+		-- configure rust server
+		rt.setup({
+			server = {
+				on_attach = on_attach,
+			},
+		})
 
 		-- configure html server
 		lspconfig["html"].setup({

@@ -12,6 +12,7 @@ return {
 			indent = { enable = true },
 			autotag = { enable = true },
 			ensure_installed = {
+				"rust",
 				"json",
 				"javascript",
 				"typescript",
