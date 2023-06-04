@@ -34,7 +34,7 @@ plugins=(
   zsh-autosuggestions
   F-Sy-H
   fzf
-  zsh-z
+  z
   web-search
 )
 
