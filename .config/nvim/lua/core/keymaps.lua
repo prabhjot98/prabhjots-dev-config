@@ -6,6 +6,7 @@ keymap.set("n", "x", '"_x') -- delete single character without copying into regi
 keymap.set("n", "<leader>e", ":NvimTreeFindFileToggle<CR>") -- toggle file explorer
 keymap.set("n", "<leader>w", ":w<CR>") -- save
 keymap.set("n", "<leader>x", ":x<CR>") -- save and quit
+keymap.set("n", "<leader>l", ":LazyGit<CR>") -- save and quit
 
 local wk = require("which-key")
 
@@ -26,12 +27,13 @@ wk.register({
 		},
 		{
 			s = {
-				name = "Screen managment",
+				name = "",
 				v = { "<C-w>v", "split window vertically" },
 				h = { "<C-w>s", "split window horizontally" },
 				e = { "<C-w>=", "make split windows equal width & height" },
 				x = { ":close<CR>", "close current split window" },
 				m = { ":MaximizerToggle<CR>", "toggle split window maximization" },
+				s = { "<cmd>Telescope spell_suggest<cr>", "Spell Check" },
 			},
 		},
 		{
