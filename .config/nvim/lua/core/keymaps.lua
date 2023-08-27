@@ -17,6 +17,7 @@ wk.register({
 			f = { "<cmd>Telescope find_files<cr>", "Find File" }, -- find a file in the directory you are in
 			s = { "<cmd>Telescope live_grep<cr>", "Find file with string" }, -- find files with the search string in your current directory
 			r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" }, -- show recently opened files
+			h = { "<cmd>Telescope find_files hidden=true<cr>", "Find hidden file" }, -- find a hidden file
 		},
 		{
 			g = {
@@ -46,11 +47,12 @@ wk.register({
 			},
 		},
 		{
-			n = {
-				name = "Neotest",
-				f = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", "Test the entire file" },
-				s = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Display the test summary panel" },
-				n = { "<cmd>lua require('neotest').run.run()<cr>", "Test the nearest test" },
+			d = {
+				name = "Diffview",
+				o = { ":DiffviewOpen<CR>", "Diffview Open" },
+				c = { ":DiffviewClose<CR>", "Diffview Close" },
+				h = { ":DiffviewFileHistory<CR>", "Diffview view file history" },
+				r = { ":DiffviewRefresh<CR>", "Diffview refresh" },
 			},
 		},
 	},
