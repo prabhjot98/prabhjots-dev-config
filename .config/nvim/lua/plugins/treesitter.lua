@@ -1,8 +1,5 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-	dependencies = {
-		"p00f/nvim-ts-rainbow",
-	},
 	config = function()
 		require("nvim-treesitter.install").update({ with_sync = true })
 		require("nvim-treesitter.configs").setup({
@@ -30,11 +27,6 @@ return {
 				"gitignore",
 			},
 			auto_install = true,
-			rainbow = {
-				enable = true,
-				extended_mode = true,
-				max_file_lines = nil,
-			},
 		})
 	end,
 }
