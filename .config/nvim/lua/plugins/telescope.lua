@@ -5,7 +5,6 @@ return {
 	config = function()
 		local telescopeActions = require("telescope.actions")
 		local telescope = require("telescope")
-		telescope.load_extension("fzf")
 		telescope.setup({
 			defaults = {
 				mappings = {
@@ -18,6 +17,7 @@ return {
 				layout_config = { height = 0.9, width = 0.9 },
 			},
 		})
+		telescope.load_extension("fzf")
 	end,
 	dependencies = {
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },

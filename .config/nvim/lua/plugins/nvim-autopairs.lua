@@ -1,6 +1,5 @@
 return {
 	"windwp/nvim-autopairs", -- autoclose parens, brackets, quotes, etc...
-	event = "InsertEnter",
 	config = function()
 		require("nvim-autopairs").setup({
 			check_ts = true, -- enable treesitter
