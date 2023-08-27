@@ -8,10 +8,6 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line if pasting URLs and other text is messed up.
@@ -34,13 +30,11 @@ plugins=(
   zsh-autosuggestions
   F-Sy-H
   fzf
-  z
+  zsh-z
   web-search
 )
 
 source $ZSH/oh-my-zsh.sh
-
-# User configuration
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -54,6 +48,7 @@ fi
  
 # Enable iTerm2 shell integration (can be enabled via iTerm2 context menu)
 source ~/.iterm2_shell_integration.zsh
+
 # pnpm
 export PNPM_HOME="/Users/pssandhu/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
@@ -63,20 +58,10 @@ export ZPLUG_HOME=/opt/homebrew/opt/zplug
 
 #Custom aliases
 alias p='pnpm'
+alias pv='pnpm verify'
 alias n='nvim'
-alias nvimConfig="nvim ~/.config/nvim/init.lua"
 alias gr='git pull --rebase'
 alias gp='git push'
 alias gs='git status'
 
 export PATH="$PATH:$HOME/.local/bin"
-
-function aws-login() {
-  if [ $# -gt 0 ]; then
-    aws-adfs login --adfs-ca-bundle ~/.aws/sectigo.cer  $@
-  else
-    aws-adfs login --profile default --adfs-ca-bundle ~/.aws/sectigo.cer && aws-adfs login --profile cross-account --adfs-ca-bundle ~/.aws/sectigo.cer
-  fi
-}
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
