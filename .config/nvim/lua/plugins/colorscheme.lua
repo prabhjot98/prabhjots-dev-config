@@ -5,6 +5,7 @@ return {
 	name = "catppuccin",
 	config = function()
 		require("catppuccin").setup({
+			transparent_background = true,
 			integrations = {
 				beacon = true,
 				cmp = true,
@@ -17,10 +18,14 @@ return {
 				neotest = true,
 				neotree = true,
 				nvimtree = true,
-				telescope = true,
+				telescope = {
+					enabled = true,
+				},
 				treesitter = true,
 				mason = true,
+				notify = true,
 				markdown = true,
+				leap = true,
 				native_lsp = {
 					enabled = true,
 					virtual_text = {
@@ -34,6 +39,9 @@ return {
 						hints = { "underline" },
 						warnings = { "underline" },
 						information = { "underline" },
+					},
+					inlay_hints = {
+						background = true,
 					},
 				},
 				which_key = true,
