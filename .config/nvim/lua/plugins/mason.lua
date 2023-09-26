@@ -17,6 +17,7 @@ return {
 				"graphql",
 				"html",
 				"jsonls",
+				"gopls",
 				"lua_ls",
 				"tailwindcss",
 				"tsserver",
@@ -24,5 +25,6 @@ return {
 			},
 			automatic_installation = true, -- not the same as ensure_installed
 		})
+		require("mason-lspconfig").setup_handlers({})
 	end,
 }

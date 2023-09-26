@@ -20,7 +20,13 @@ return {
 		telescope.load_extension("fzf")
 	end,
 	dependencies = {
-		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		{
+			"nvim-telescope/telescope-fzf-native.nvim",
+			build = "make",
+			config = function()
+				require("telescope").load_extension("fzf")
+			end,
+		},
 		{ "nvim-lua/plenary.nvim" },
 	},
 }

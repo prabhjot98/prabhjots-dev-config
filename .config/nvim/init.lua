@@ -12,10 +12,23 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("core.options")
-require("lazy").setup(
-	"plugins",
-	{ ui = { border = "rounded", size = { width = 0.5, height = 0.7 } }, defaults = {
+require("lazy").setup("plugins", {
+	ui = { border = "rounded", size = { width = 0.5, height = 0.7 } },
+	defaults = {
 		lazy = false,
-	} }
-)
+		version = false,
+	},
+	performance = {
+		rtp = {
+			-- disable some rtp plugins
+			disabled_plugins = {
+				"gzip",
+				"tarPlugin",
+				"tohtml",
+				"tutor",
+				"zipPlugin",
+			},
+		},
+	},
+})
 require("core.keymaps")

@@ -7,27 +7,13 @@ return {
 		"simrat39/rust-tools.nvim",
 	},
 	config = function()
-		-- import lspconfig plugin safely
-		local lspconfig_status, lspconfig = pcall(require, "lspconfig")
-		if not lspconfig_status then
-			return
-		end
-
-		-- import cmp-nvim-lsp plugin safely
-		local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-		if not cmp_nvim_lsp_status then
-			return
-		end
-
-		-- import typescript plugin safely
-		local typescript_setup, typescript = pcall(require, "typescript")
-		if not typescript_setup then
-			return
-		end
-
+		local lspconfig = require("lspconfig")
+		local util = require("lspconfig/util")
+		local cmp_nvim_lsp = require("cmp_nvim_lsp")
+		local typescript = require("typescript")
 		local rt = require("rust-tools")
 
-		local keymap = vim.keymap -- for conciseness
+		local keymap = vim.keymap
 
 		-- enable keybinds only for when lsp server available
 		local on_attach = function(client, bufnr)
@@ -55,6 +41,14 @@ return {
 			end
 
 			if client.name == "rust_analyzer" then
+				local format_sync_grp = vim.api.nvim_create_augroup("Format", {})
+				vim.api.nvim_create_autocmd("BufWritePre", {
+					pattern = "*.rs",
+					callback = function()
+						vim.lsp.buf.format({ timeout_ms = 200 })
+					end,
+					group = format_sync_grp,
+				})
 				-- Hover actions
 				vim.keymap.set("n", "<leader>asd", rt.hover_actions.hover_actions, { buffer = bufnr })
 				-- Code action groups
@@ -75,6 +69,22 @@ return {
 		rt.setup({
 			server = {
 				on_attach = on_attach,
+				settings = {
+					["rust-analyzer"] = {
+						checkOnSave = {
+							command = "clippy",
+						},
+					},
+					codeActionOnSave = {
+						enable = true,
+						mode = "all",
+					},
+				},
+			},
+			tools = {
+				inlay_hints = {
+					auto = false,
+				},
 			},
 		})
 
@@ -115,12 +125,22 @@ return {
 			on_attach = on_attach,
 		})
 
-		-- configure emmet language server
-		-- lspconfig["emmet_ls"].setup({
-		--   capabilities = capabilities,
-		--   on_attach = on_attach,
-		--   filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
-		-- })
+		-- config go server
+		lspconfig["gopls"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			cmd = { "gopls" },
+			filetypes = { "go", "gomod", "gowork", "gotmpl" },
+			root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+			settings = {
+				gopls = {
+					completeUnimported = true,
+					analyses = {
+						unusedparams = true,
+					},
+				},
+			},
+		})
 
 		-- configure lua server (with special settings)
 		lspconfig["lua_ls"].setup({

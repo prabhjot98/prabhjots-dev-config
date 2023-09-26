@@ -51,11 +51,21 @@ opt.splitbelow = true -- split horizontal window to the bottom
 opt.iskeyword:append("-") -- consider string-string as whole word
 
 -- view settings
-opt.scrolloff = 8
+opt.scrolloff = 4
 
 -- update time
-opt.updatetime = 100
+opt.updatetime = 200
 
--- code folding
--- vim.wo.foldmethod = "expr"
--- vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+-- Fix markdown indentation settings
+vim.g.markdown_recommended_style = 0
+
+opt.grepformat = "%f:%l:%c:%m"
+opt.grepprg = "rg --vimgrep"
+
+opt.autowrite = true -- Enable auto write
+
+opt.conceallevel = 3 -- Hide * markup for bold and italic
+
+opt.showmode = false
+opt.smartindent = true -- Insert indents automatically
+opt.spelllang = { "en" }
