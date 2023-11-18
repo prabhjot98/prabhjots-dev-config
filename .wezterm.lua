@@ -1,4 +1,5 @@
 local wezterm = require("wezterm")
+local mux = wezterm.mux
 
 local config = {}
 if wezterm.config_builder then
@@ -16,6 +17,7 @@ config.default_workspace = "home"
 config.animation_fps = 30
 
 config.use_fancy_tab_bar = false
+config.hide_tab_bar_if_only_one_tab = true
 config.status_update_interval = 1000
 config.show_new_tab_button_in_tab_bar = false
 config.window_padding = { left = 0, right = 0, top = 0, bottom = 0 }
@@ -45,6 +47,11 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 	return {
 		{ Text = LEFT_SEPERATOR .. cwd .. RIGHT_SEPERATOR },
 	}
+end)
+
+wezterm.on("gui-startup", function(cmd)
+	local tab, pane, window = mux.spawn_window(cmd or {})
+	window:gui_window():maximize()
 end)
 
 return config
