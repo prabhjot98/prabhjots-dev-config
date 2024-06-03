@@ -31,7 +31,6 @@ plugins=(
   F-Sy-H
   fzf
   zsh-z
-  web-search
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -46,9 +45,6 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
  
-# Enable iTerm2 shell integration (can be enabled via iTerm2 context menu)
-source ~/.iterm2_shell_integration.zsh
-
 # pnpm
 export PNPM_HOME="/Users/pssandhu/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
@@ -60,8 +56,25 @@ export ZPLUG_HOME=/opt/homebrew/opt/zplug
 alias p='pnpm'
 alias pv='pnpm verify'
 alias n='nvim'
-alias gr='git pull --rebase'
-alias gp='git push'
+alias gp='git pull --rebase'
+alias gP='git push'
 alias gs='git status'
+alias ls='exa'
+alias rm='trash'
+alias s='source ~/.zshrc'
+alias lg='lazygit'
+
+function take {
+  mkdir -p $1
+  cd $1
+}
 
 export PATH="$PATH:$HOME/.local/bin"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+[ -f "/Users/pssandhu/.ghcup/env" ] && . "/Users/pssandhu/.ghcup/env" # ghcup-env

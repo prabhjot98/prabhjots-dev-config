@@ -7,11 +7,12 @@ return {
 				["javascriptreact"] = { "prettierd", "prettier", "eslint_d" },
 				["typescript"] = { "prettierd", "prettier", "eslint_d" },
 				["typescriptreact"] = { "prettierd", "prettier", "eslint_d" },
+				["astro"] = { "prettierd", "prettier", "eslint_d" },
 				["css"] = { "prettierd" },
 				["scss"] = { "prettierd" },
 				["less"] = { "prettierd" },
 				["html"] = { "prettierd" },
-				["json"] = { "prettierd", "eslint" },
+				["json"] = { "prettierd", "eslint_d" },
 				["jsonc"] = { "prettierd" },
 				["yaml"] = { "prettierd" },
 				["markdown"] = { "marksman" },
@@ -19,6 +20,8 @@ return {
 				["graphql"] = { "prettierd" },
 				["handlebars"] = { "prettierd" },
 				["lua"] = { "stylua" },
+				["go"] = { "goimports", "golines" },
+				["gleam"] = { "gleam" },
 			},
 		})
 
