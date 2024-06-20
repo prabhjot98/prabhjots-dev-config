@@ -63,6 +63,8 @@ alias ls='exa'
 alias rm='trash'
 alias s='source ~/.zshrc'
 alias lg='lazygit'
+alias reboot='reboot --reboot --no-wall'
+alias shutdown='shutdown -h now'
 
 function take {
   mkdir -p $1
@@ -78,3 +80,5 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 [ -f "/Users/pssandhu/.ghcup/env" ] && . "/Users/pssandhu/.ghcup/env" # ghcup-env
+
+export NIX_LD=$(nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> {}; NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"; in NIX_LD')

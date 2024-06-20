@@ -45,6 +45,8 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
+  nix.settings.experimental-features = ["nix-command" "flakes"];
+
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
@@ -79,7 +81,6 @@
     description = "Prabhjot Sandhu";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-    #  thunderbird
     ];
     shell = pkgs.zsh;
   };
@@ -108,12 +109,14 @@
     wget
     curl
     wezterm
-    waybar
     hyprland
+    nwg-bar
+    waybar
     dunst
     oh-my-zsh
     lazygit
     fzf
+    trashy
     go
     libnotify
     hyprpaper
@@ -122,7 +125,9 @@
     zsh
     nodejs_22
     corepack_22
+    pavucontrol
     gcc
+    python3
   ];
 
   programs.hyprland = {
@@ -141,9 +146,17 @@
   };
 
   xdg.portal.enable = true;
+  programs.nix-ld.enable = true;
 
   environment.variables.EDITOR = "nvim";
-  programs.zsh.enable = true;
+  programs.zsh = {
+    enable = true;
+
+    # # This command let's me execute arbitrary binaries downloaded through channels such as mason.
+    # initExtra = ''
+    #   export NIX_LD=$(nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> {}; NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"; in NIX_LD')
+    # '';
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
