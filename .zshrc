@@ -35,6 +35,9 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# default editor
+export EDITOR=nvim
+
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='nvim'
@@ -46,8 +49,8 @@ fi
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
  
 # pnpm
-export PNPM_HOME="/Users/pssandhu/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+# export PNPM_HOME="/Users/pssandhu/Library/pnpm"
+# export PATH="$PNPM_HOME:$PATH"
 
 #ZPLUG stuff
 export ZPLUG_HOME=/opt/homebrew/opt/zplug
@@ -59,7 +62,9 @@ alias n='nvim'
 alias gp='git pull --rebase'
 alias gP='git push'
 alias gs='git status'
-alias ls='exa'
+alias gS='git stash -u'
+alias gpop='git stash pop'
+alias ls='eza'
 alias rm='trash'
 alias s='source ~/.zshrc'
 alias lg='lazygit'
@@ -71,14 +76,16 @@ function take {
   cd $1
 }
 
+export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
 export PATH="$PATH:$HOME/.local/bin"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# fnm (node version manager)
+FNM_PATH="/Users/pssandhu/Library/Application Support/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/Users/pssandhu/Library/Application Support/fnm:$PATH"
+  eval "`fnm env`"
+fi
 
-[ -f "/Users/pssandhu/.ghcup/env" ] && . "/Users/pssandhu/.ghcup/env" # ghcup-env
-
-export NIX_LD=$(nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> {}; NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"; in NIX_LD')
+eval "$(fnm env --use-on-cd --shell zsh)"
