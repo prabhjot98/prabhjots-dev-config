@@ -5,6 +5,7 @@ return {
 		"hrsh7th/cmp-path", -- source for file system paths
 		"saadparwaiz1/cmp_luasnip", -- for autocompletion
 		"L3MON4D3/LuaSnip",
+		"onsails/lspkind.nvim", -- for cool lil icons
 	},
 	config = function()
 		vim.opt.completeopt = "menu,menuone,noselect"
@@ -18,6 +19,7 @@ return {
 			return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 		end
 
+		local lspkind = require("lspkind")
 		cmp.setup({
 			snippet = {
 				expand = function(args)
@@ -69,6 +71,7 @@ return {
 					mode = "symbol",
 					maxwidth = 50,
 					ellipsis_char = "...",
+					show_labelDetails = true,
 				}),
 			},
 		})

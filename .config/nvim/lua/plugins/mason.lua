@@ -8,8 +8,6 @@ return {
 		"nvimdev/lspsaga.nvim",
 		"hrsh7th/cmp-nvim-lsp",
 		"jose-elias-alvarez/typescript.nvim",
-		"onsails/lspkind.nvim",
-		"simrat39/rust-tools.nvim",
 	},
 	build = ":MasonUpdate",
 	config = function()
@@ -27,13 +25,11 @@ return {
 				"gopls",
 				"lua_ls",
 				"tailwindcss",
-				"tsserver",
 				"yamlls",
 			},
 			automatic_installation = true, -- not the same as ensure_installed
 		})
 		local lspconfig = require("lspconfig")
-		local util = require("lspconfig/util")
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
 		local keymap = vim.keymap
@@ -68,65 +64,7 @@ return {
 					on_attach = on_attach,
 				})
 			end,
-			["rust_analyzer"] = function()
-				require("rust-tools").setup({
-					server = {
-						on_attach = function(client, bufnr)
-							on_attach(client, bufnr)
-							local format_sync_grp = vim.api.nvim_create_augroup("Format", {})
-							vim.api.nvim_create_autocmd("BufWritePre", {
-								pattern = "*.rs",
-								callback = function()
-									vim.lsp.buf.format({ timeout_ms = 200 })
-								end,
-								group = format_sync_grp,
-							})
-							local rt = require("rust-tools")
-							-- Hover actions
-							vim.keymap.set("n", "<leader>asd", rt.hover_actions.hover_actions, { buffer = bufnr })
-							-- Code action groups
-							vim.keymap.set("n", "<leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-						end,
-						settings = {
-							["rust-analyzer"] = {
-								checkOnSave = {
-									command = "clippy",
-								},
-							},
-							codeActionOnSave = {
-								enable = true,
-								mode = "all",
-							},
-						},
-					},
-					tools = {
-						inlay_hints = {
-							auto = true,
-						},
-					},
-					capabilities = capabilities,
-				})
-			end,
-			["tsserver"] = function()
-				require("typescript-tools").setup({
-					settings = {
-						tsserver_file_preferences = {
-							includeInlayParameterNameHints = "all",
-							includeCompletionsForModuleExports = true,
-							quotePreference = "auto",
-						},
-						tsserver_format_options = {
-							allowIncompleteCompletions = false,
-							allowRenameOfImportPath = false,
-						},
-					},
-				})
-				local opts = { noremap = true, silent = true }
-				keymap.set("n", "<leader>rf", ":TSToolsRenameFile<CR>", opts) -- rename file and update imports
-				keymap.set("n", "<leader>oi", ":TSToolsSortImports<CR>", opts) -- organize imports
-				keymap.set("n", "<leader>ru", ":TSToolsRemoveUnusedImports<CR>", opts) -- remove unused variables
-				keymap.set("n", "gd", ":TSToolsGoToSourceDefinition<CR>", opts) -- go to definition
-			end,
+			["rust_analyzer"] = function() end,
 			["lua_ls"] = function()
 				lspconfig["lua_ls"].setup({
 					capabilities = capabilities,
@@ -148,9 +86,9 @@ return {
 					},
 				})
 			end,
-			-- ["graphql"] = function()
-			-- 	lspconfig["graphql"].setup({})
-			-- end,
+			["graphql"] = function()
+				lspconfig["graphql"].setup({})
+			end,
 		})
 	end,
 }

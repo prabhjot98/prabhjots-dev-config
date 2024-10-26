@@ -2,35 +2,34 @@ return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
-		"nvim-lua/plenary.nvim",
-		"nvim-treesitter/nvim-treesitter",
-		"folke/noice.nvim",
 	},
 	config = function()
 		require("lualine").setup({
 			options = {
-				theme = "onedark",
 				component_separators = "|",
 				section_separators = { left = "", right = "" },
 				globalstatus = true,
 			},
 			sections = {
 				lualine_a = {
-					{ "mode", separator = { left = "" }, right_padding = 2 },
+					{ "mode", separator = { left = "", right = "" } },
 				},
-				lualine_b = { "branch", "diagnostics" },
+				lualine_b = { "diagnostics" },
 				lualine_c = {},
 				lualine_x = {
+					"searchcount",
 					{
-						require("noice").api.statusline.mode.get,
-						cond = require("noice").api.statusline.mode.has,
-						color = { fg = "#ff9e64" },
+						function() -- this is for displaying the macro you are recording
+							local reg = vim.fn.reg_recording()
+							if reg == "" then
+								return ""
+							end -- not recording
+							return "recording to " .. reg
+						end,
 					},
 				},
-				lualine_y = {},
-				lualine_z = {
-					{ "filename", separator = { right = "" }, left_padding = 2 },
-				},
+				lualine_y = { { "location", separator = { left = "" } } },
+				lualine_z = { { "filename", separator = { right = "" } } },
 			},
 			inactive_sections = {
 				lualine_a = {},
@@ -40,6 +39,7 @@ return {
 				lualine_y = {},
 				lualine_z = {},
 			},
+			extensions = { "fzf", "lazy", "mason", "nvim-tree", "trouble", "man", "quickfix" },
 		})
 	end,
 }

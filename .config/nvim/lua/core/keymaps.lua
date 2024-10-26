@@ -19,54 +19,40 @@ keymap.set("n", "<leader>e", ":NvimTreeFindFileToggle<CR>", opts) -- toggle file
 keymap.set("n", "<leader>w", ":w<CR>", opts) -- save
 keymap.set("n", "<leader>x", ":x<CR>", opts) -- save and quit
 keymap.set("n", "<leader>l", ":LazyGit<CR>", opts) -- open lazygit
-keymap.set("n", "<leader>z", ":ZenMode<CR>", opts) -- toggle zenmode
+
+keymap.del("n", "gc")
+keymap.del("n", "gb")
 
 local wk = require("which-key")
 
-wk.register({
-	["<leader>"] = {
-		f = {
-			name = "Telescope", -- optional group name
-			f = { "<cmd>Telescope find_files<cr>", "Find File" }, -- find a file in the directory you are in
-			s = { "<cmd>Telescope live_grep<cr>", "Find file with string" }, -- find files with the search string in your current directory
-			r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" }, -- show recently opened files
-			h = { "<cmd>Telescope find_files hidden=true<cr>", "Find hidden file" }, -- find a hidden file
-		},
-		{
-			g = {
-				name = "Git",
-				s = { "<cmd>Telescope git_status<cr>", "Git Status" },
-				b = { "<cmd>Telescope git_branches<cr>", "Git Branches" },
-			},
-		},
-		{
-			s = {
-				name = "",
-				v = { "<C-w>v", "split window vertically" },
-				h = { "<C-w>s", "split window horizontally" },
-				e = { "<C-w>=", "make split windows equal width & height" },
-				x = { ":close<CR>", "close current split window" },
-				m = { ":MaximizerToggle<CR>", "toggle split window maximization" },
-				s = { "<cmd>Telescope spell_suggest<cr>", "Spell Check" },
-			},
-		},
-		{
-			t = {
-				name = "Tab managment",
-				o = { ":tabnew<CR>", "open new tab" },
-				x = { ":tabclose<CR>", "close current tab" },
-				n = { ":tabn<CR>", " go to next tab" },
-				p = { ":tabp<CR>", " go to previous tab" },
-			},
-		},
-		{
-			d = {
-				name = "Diffview",
-				o = { ":DiffviewOpen<CR>", "Diffview Open" },
-				c = { ":DiffviewClose<CR>", "Diffview Close" },
-				h = { ":DiffviewFileHistory<CR>", "Diffview view file history" },
-				r = { ":DiffviewRefresh<CR>", "Diffview refresh" },
-			},
-		},
-	},
+wk.add({
+	{ "<leader>f", group = "Telescope" }, -- Group for telescope commands
+	{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find File" },
+	{ "<leader>fs", "<cmd>Telescope live_grep<cr>", desc = "Find file with string" },
+	{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Open Recent File" },
+	{ "<leader>fh", "<cmd>Telescope find_files hidden=true<cr>", desc = "Find hidden file" },
+
+	{ "<leader>g", group = "Git" }, -- Group for git commands
+	{ "<leader>gs", "<cmd>Telescope git_status<cr>", desc = "Git Status" },
+	{ "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "Git Branches" },
+
+	{ "<leader>s", group = "Splits" }, -- Group for window split commands
+	{ "<leader>sv", "<C-w>v", desc = "Split window vertically" },
+	{ "<leader>sh", "<C-w>s", desc = "Split window horizontally" },
+	{ "<leader>se", "<C-w>=", desc = "Make split windows equal width & height" },
+	{ "<leader>sx", ":close<CR>", desc = "Close current split window" },
+	{ "<leader>sm", ":MaximizerToggle<CR>", desc = "Toggle split window maximization" },
+	{ "<leader>ss", "<cmd>Telescope spell_suggest<cr>", desc = "Spell Check" },
+
+	{ "<leader>t", group = "Tab Management" }, -- Group for tab commands
+	{ "<leader>to", ":tabnew<CR>", desc = "Open new tab" },
+	{ "<leader>tx", ":tabclose<CR>", desc = "Close current tab" },
+	{ "<leader>tn", ":tabn<CR>", desc = "Go to next tab" },
+	{ "<leader>tp", ":tabp<CR>", desc = "Go to previous tab" },
+
+	{ "<leader>d", group = "Diffview" }, -- Group for Diffview commands
+	{ "<leader>do", ":DiffviewOpen<CR>", desc = "Diffview Open" },
+	{ "<leader>dc", ":DiffviewClose<CR>", desc = "Diffview Close" },
+	{ "<leader>dh", ":DiffviewFileHistory<CR>", desc = "Diffview view file history" },
+	{ "<leader>dr", ":DiffviewRefresh<CR>", desc = "Diffview refresh" },
 }, opts)
