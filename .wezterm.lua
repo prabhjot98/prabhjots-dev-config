@@ -7,7 +7,7 @@ if wezterm.config_builder then
 end
 local OPACITY = 0.9
 
-config.color_scheme = "OneDark (base16)"
+config.color_scheme = "Kanagawa (Gogh)"
 config.font = wezterm.font("JetBrainsMonoNL Nerd Font")
 config.font_size = 16
 config.max_fps = 200
@@ -22,8 +22,8 @@ config.status_update_interval = 1000
 config.show_new_tab_button_in_tab_bar = false
 config.window_padding = { left = 0, right = 0, top = 0, bottom = 0 }
 
-local LEFT_SEPERATOR = wezterm.nerdfonts.ple_left_half_circle_thick
-local RIGHT_SEPERATOR = wezterm.nerdfonts.ple_right_half_circle_thick
+local LEFT_SEPERATOR = " "
+local RIGHT_SEPERATOR = " "
 
 local function get_current_working_dir(tab)
 	local current_dir = tab.active_pane.current_working_dir.file_path or ""
@@ -71,28 +71,5 @@ smart_splits.apply_to_config(config, {
 		resize = "META", -- modifier to use for pane resize, e.g. META+h to resize to the left
 	},
 })
-
-wezterm.on("user-var-changed", function(window, pane, name, value)
-	local overrides = window:get_config_overrides() or {}
-	if name == "ZEN_MODE" then
-		local incremental = value:find("+")
-		local number_value = tonumber(value)
-		if incremental ~= nil then
-			while number_value > 0 do
-				window:perform_action(wezterm.action.IncreaseFontSize, pane)
-				number_value = number_value - 1
-			end
-			overrides.enable_tab_bar = false
-		elseif number_value < 0 then
-			window:perform_action(wezterm.action.ResetFontSize, pane)
-			overrides.font_size = nil
-			overrides.enable_tab_bar = true
-		else
-			overrides.font_size = number_value
-			overrides.enable_tab_bar = false
-		end
-	end
-	window:set_config_overrides(overrides)
-end)
 
 return config
