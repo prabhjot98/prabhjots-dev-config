@@ -5,11 +5,13 @@ local config = {}
 if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
-local OPACITY = 0.9
+local OPACITY = 0.8
 
-config.color_scheme = "Kanagawa (Gogh)"
+local theme = "Kanagawa (Gogh)"
+
+config.color_scheme = theme
 config.font = wezterm.font("JetBrainsMonoNL Nerd Font")
-config.font_size = 16
+config.font_size = 14
 config.max_fps = 200
 config.window_background_opacity = OPACITY
 config.window_decorations = "RESIZE"
@@ -21,6 +23,19 @@ config.hide_tab_bar_if_only_one_tab = true
 config.status_update_interval = 1000
 config.show_new_tab_button_in_tab_bar = false
 config.window_padding = { left = 0, right = 0, top = 0, bottom = 0 }
+
+local schemes = wezterm.color.get_builtin_schemes()
+local kanagawa = schemes[theme]
+
+config.colors = {
+	tab_bar = {
+		background = "rgba(31, 31, 40," .. OPACITY .. ")",
+		active_tab = {
+			bg_color = kanagawa.ansi[1],
+			fg_color = kanagawa.foreground,
+		},
+	},
+}
 
 local LEFT_SEPERATOR = " "
 local RIGHT_SEPERATOR = " "
@@ -38,11 +53,8 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 		{ Text = get_current_working_dir(tab) },
 	})
 
-	return {
-		{ Text = LEFT_SEPERATOR .. cwd .. RIGHT_SEPERATOR },
-	}
+	return { { Text = LEFT_SEPERATOR .. cwd .. RIGHT_SEPERATOR } }
 end)
-
 wezterm.on("gui-startup", function(cmd)
 	local tab, pane, window = mux.spawn_window(cmd or {})
 	window:gui_window():maximize()
