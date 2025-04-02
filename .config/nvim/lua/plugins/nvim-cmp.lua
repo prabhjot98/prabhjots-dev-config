@@ -19,7 +19,6 @@ return {
 			return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 		end
 
-		local lspkind = require("lspkind")
 		cmp.setup({
 			snippet = {
 				expand = function(args)
