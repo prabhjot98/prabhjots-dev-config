@@ -19,6 +19,7 @@ return {
 				handlebars = { "prettierd" },
 				lua = { "stylua" },
 				nix = { "alejandra" },
+				gdscript = { "gdformat" },
 			},
 			format_on_save = {
 				timeout_ms = 500,

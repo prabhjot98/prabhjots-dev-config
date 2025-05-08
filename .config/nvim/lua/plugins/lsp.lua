@@ -7,11 +7,14 @@ return {
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
 		"nvimdev/lspsaga.nvim",
+		"williamboman/mason.nvim",
+		{ "williamboman/mason-lspconfig.nvim", config = function() end },
 	},
 	lazy = true,
 	event = { "BufReadPost", "BufNewFile" },
 	cmd = { "LspInfo" },
 	config = function()
+		require("mason").setup()
 		local lspconfig = require("lspconfig")
 
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -39,40 +42,10 @@ return {
 
 		lspconfig.nil_ls.setup({ capabilities = capabilities, on_attach = on_attach })
 		lspconfig.marksman.setup({ capabilities = capabilities, on_attach = on_attach })
-
-		lspconfig.lua_ls.setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-			settings = { -- custom settings for lua
-				Lua = {
-					-- make the language server recognize "vim" global
-					diagnostics = {
-						globals = { "vim" },
-					},
-					workspace = {
-						-- make language server aware of runtime files
-						library = {
-							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-							[vim.fn.stdpath("config") .. "/lua"] = true,
-						},
-					},
-				},
-			},
-		})
-
 		lspconfig.graphql.setup({ capabilities = capabilities, on_attach = on_attach })
 		lspconfig.tailwindcss.setup({ capabilities = capabilities, on_attach = on_attach })
-
-		lspconfig.jsonls.setup({
-			capabilities = capabilities,
-			cmd = { "vscode-json-languageserver", "--stdio" },
-			settings = {
-				json = {
-					validate = { enable = true },
-				},
-			},
-			on_attach = on_attach,
-		})
+		lspconfig.eslint.setup({ capabilities = capabilities, on_attach = on_attach })
+		lspconfig.gdscript.setup({ capabilities = capabilities, on_attach = on_attach })
 
 		lspconfig.lua_ls.setup({
 			capabilities = capabilities,
@@ -91,6 +64,13 @@ return {
 					},
 					diagnostics = {
 						globals = { "vim" },
+					},
+					workspace = {
+						-- make language server aware of runtime files
+						library = {
+							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+							[vim.fn.stdpath("config") .. "/lua"] = true,
+						},
 					},
 					telemetry = {
 						enable = false,
