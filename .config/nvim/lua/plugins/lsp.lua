@@ -15,12 +15,11 @@ return {
 	cmd = { "LspInfo" },
 	config = function()
 		require("mason").setup()
-		local lspconfig = require("lspconfig")
 
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 		capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-		local signs = { Error = " ", Warn = " ", Hint = "ﴞ ", Info = " " }
+		local signs = { Error = " ", Warn = " ", Hint = "ﴞ ", Info = " " }
 		for type, icon in pairs(signs) do
 			local hl = "DiagnosticSign" .. type
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
@@ -29,25 +28,24 @@ return {
 		local keymap = vim.keymap
 		local on_attach = function(client, bufnr)
 			local opts = { noremap = true, silent = true, buffer = bufnr }
-			keymap.set("n", "gf", "<cmd>Lspsaga finder<CR>", opts) -- show definition, references
-			keymap.set("n", "gd", "<cmd>Lspsaga goto_definition<CR>", opts) -- go to declaration
-			keymap.set("n", "gtd", "<cmd>Lspsaga goto_type_definition<CR>", opts) -- go to type definition
-			keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts) -- see available code actions
-			keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opts) -- smart rename
-			keymap.set("n", "<leader>swd", "<cmd>Lspsaga show_workspace_diagnostics<CR>", opts) -- show workplace diagnostics
-			keymap.set("n", "'d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts) -- jump to previous diagnostic in buffer
-			keymap.set("n", ";d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- jump to next diagnostic in buffer
-			keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
+			keymap.set("n", "gf", "<cmd>Lspsaga finder<CR>", opts)
+			keymap.set("n", "gd", "<cmd>Lspsaga goto_definition<CR>", opts)
+			keymap.set("n", "gtd", "<cmd>Lspsaga goto_type_definition<CR>", opts)
+			keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts)
+			keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opts)
+			keymap.set("n", "<leader>swd", "<cmd>Lspsaga show_workspace_diagnostics<CR>", opts)
+			keymap.set("n", "'d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
+			keymap.set("n", ";d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
+			keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
 		end
 
-		lspconfig.nil_ls.setup({ capabilities = capabilities, on_attach = on_attach })
-		lspconfig.marksman.setup({ capabilities = capabilities, on_attach = on_attach })
-		lspconfig.graphql.setup({ capabilities = capabilities, on_attach = on_attach })
-		lspconfig.tailwindcss.setup({ capabilities = capabilities, on_attach = on_attach })
-		lspconfig.eslint.setup({ capabilities = capabilities, on_attach = on_attach })
-		lspconfig.gdscript.setup({ capabilities = capabilities, on_attach = on_attach })
+		-- Set up LSP servers using vim.lsp.config (Neovim 0.11+)
+		local simple_servers = { "nil_ls", "marksman", "graphql", "tailwindcss", "eslint", "gdscript", "terraformls" }
+		for _, server in ipairs(simple_servers) do
+			vim.lsp.config(server, { capabilities = capabilities, on_attach = on_attach })
+		end
 
-		lspconfig.lua_ls.setup({
+		vim.lsp.config("lua_ls", {
 			capabilities = capabilities,
 			on_attach = on_attach,
 			settings = {
@@ -66,7 +64,6 @@ return {
 						globals = { "vim" },
 					},
 					workspace = {
-						-- make language server aware of runtime files
 						library = {
 							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
 							[vim.fn.stdpath("config") .. "/lua"] = true,
@@ -77,6 +74,43 @@ return {
 					},
 				},
 			},
+		})
+
+		-- Enable all configured LSP servers
+		vim.lsp.enable(simple_servers)
+		vim.lsp.enable("lua_ls")
+
+		-- Java LSP with nvim-jdtls
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = "java",
+			callback = function()
+				local jdtls = require("jdtls")
+
+				local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
+				local root_dir = require("jdtls.setup").find_root(root_markers)
+				if root_dir == nil then
+					return
+				end
+
+				local workspace_folder = vim.fn.stdpath("data")
+					.. "/site/java/workspace-root/"
+					.. vim.fn.fnamemodify(root_dir, ":p:h:t")
+
+				local jdtls_path = vim.fn.stdpath("data") .. "/mason/packages/jdtls"
+
+				local config = {
+					cmd = {
+						jdtls_path .. "/bin/jdtls",
+						"-data",
+						workspace_folder,
+					},
+					root_dir = root_dir,
+					capabilities = capabilities,
+					on_attach = on_attach,
+				}
+
+				jdtls.start_or_attach(config)
+			end,
 		})
 	end,
 }
