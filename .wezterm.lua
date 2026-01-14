@@ -5,7 +5,7 @@ local config = {}
 if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
-local OPACITY = 0.8
+local OPACITY = 0.6
 
 local theme = "Kanagawa (Gogh)"
 
@@ -14,7 +14,9 @@ config.font = wezterm.font("JetBrainsMonoNL Nerd Font")
 config.font_size = 14
 config.max_fps = 200
 config.window_background_opacity = OPACITY
+config.macos_window_background_blur = 80
 config.window_decorations = "RESIZE"
+config.scrollback_lines = 10000
 config.default_workspace = "home"
 config.animation_fps = 60
 
@@ -23,6 +25,9 @@ config.hide_tab_bar_if_only_one_tab = true
 config.status_update_interval = 1000
 config.show_new_tab_button_in_tab_bar = false
 config.window_padding = { left = 0, right = 0, top = 0, bottom = 0 }
+config.adjust_window_size_when_changing_font_size = false
+config.use_resize_increments = false
+config.audible_bell = "Disabled"
 
 local schemes = wezterm.color.get_builtin_schemes()
 local kanagawa = schemes[theme]
@@ -31,10 +36,15 @@ config.colors = {
 	tab_bar = {
 		background = "rgba(31, 31, 40," .. OPACITY .. ")",
 		active_tab = {
-			bg_color = kanagawa.ansi[1],
-			fg_color = kanagawa.foreground,
+			bg_color = "rgba(31, 31, 40," .. OPACITY .. ")",
+			fg_color = kanagawa.ansi[5],
+		},
+		inactive_tab = {
+			bg_color = "rgba(31, 31, 40," .. OPACITY .. ")",
+			fg_color = kanagawa.ansi[4],
 		},
 	},
+	split = kanagawa.foreground,
 }
 
 local LEFT_SEPERATOR = " "
