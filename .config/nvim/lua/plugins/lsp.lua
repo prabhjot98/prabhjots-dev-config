@@ -2,10 +2,7 @@ return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
-		"hrsh7th/nvim-cmp",
-		"hrsh7th/cmp-nvim-lsp",
-		"hrsh7th/cmp-buffer",
-		"hrsh7th/cmp-path",
+		"saghen/blink.cmp",
 		"nvimdev/lspsaga.nvim",
 		"williamboman/mason.nvim",
 		{ "williamboman/mason-lspconfig.nvim", config = function() end },
@@ -16,8 +13,7 @@ return {
 	config = function()
 		require("mason").setup()
 
-		local capabilities = require("cmp_nvim_lsp").default_capabilities()
-		capabilities.textDocument.completion.completionItem.snippetSupport = true
+		local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 		local signs = { Error = " ", Warn = " ", Hint = "ﴞ ", Info = " " }
 		for type, icon in pairs(signs) do
